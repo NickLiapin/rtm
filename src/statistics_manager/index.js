@@ -13,10 +13,10 @@ class StatisticsManager {
     /**
      * sets the statistics of the last run to statistic.old
      */
-    async setOldStatistic() { // set statistics from the last launch if there is a cache, otherwise everything will remain at zero
-        const obj = await this.loadStatistic(`statistics.${this.localEnv.ENV_NAME}.json`);
+    async setOldStatistic() { // set statistics from the last launch if there is a statistics, otherwise everything will remain at zero
+        const obj = await this.loadStatistic(this.localEnv.PATH_TO_STATISTICS_FILE);
         if (obj) {
-            this.localEnv.statistic.old = {...obj.statistics[obj.statistics.length - 1].data};
+            this.localEnv.statistic.old = {...obj.statistics[obj.statistics.length - 2].data};
         }
     }
 

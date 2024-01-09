@@ -191,6 +191,8 @@ class Index {
         await statisticsManager.updateStatisticsFile();
         await statisticsManager.setOldStatistic();
 
+        console.log(this.localEnv.statistic)
+
         this.localEnv.initialLaunch = Boolean(!this.localEnv.oldGlobalCache);  // set initialLaunch
 
         const confluenceManager = new ConfluenceManager(this.localEnv);
