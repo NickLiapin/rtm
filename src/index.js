@@ -16,6 +16,8 @@ class Index {
         //----- main configuration -----
         ENV_NAME = process.env.ENV_NAME ? process.env.ENV_NAME : "default",
         PATH_TO_LOGS_DIRECTORY = process.env.PATH_TO_LOGS_DIRECTORY ? process.env.PATH_TO_LOGS_DIRECTORY : '../logs',
+        PATH_TO_CACHE_DIRECTORY = process.env.PATH_TO_CACHE_DIRECTORY ? process.env.PATH_TO_CACHE_DIRECTORY : '../cache',
+        PATH_TO_STATISTICS_DIRECTORY = process.env.PATH_TO_STATISTICS_DIRECTORY ? process.env.PATH_TO_STATISTICS_DIRECTORY : '../statistics',
         CONFLUENCE_DOMAIN = process.env.CONFLUENCE_DOMAIN,
         CONFLUENCE_CATALOG_PAGE_ID = process.env.CONFLUENCE_CATALOG_PAGE_ID,
         CONFLUENCE_RTM_PAGE_ID = process.env.CONFLUENCE_RTM_PAGE_ID,
@@ -66,8 +68,10 @@ class Index {
             startProgram: startProgram,
             ENV_NAME: ENV_NAME,
             PATH_TO_LOGS_DIRECTORY: PATH_TO_LOGS_DIRECTORY,
-            PATH_TO_CACHE: `${path.resolve('cache.' + ENV_NAME + '.json')}`,
-            PATH_TO_STATISTICS: `${path.resolve('statistics.' + ENV_NAME + '.json')}`,
+            PATH_TO_CACHE_DIRECTORY: PATH_TO_CACHE_DIRECTORY,
+            PATH_TO_STATISTICS_DIRECTORY: PATH_TO_STATISTICS_DIRECTORY,
+            PATH_TO_CACHE_FILE: path.resolve(__dirname, PATH_TO_CACHE_DIRECTORY, `cache.${ENV_NAME}.json`),
+            PATH_TO_STATISTICS_FILE: path.resolve(__dirname, PATH_TO_STATISTICS_DIRECTORY, `statistics.${ENV_NAME}.json`),
             CONFLUENCE_DOMAIN: CONFLUENCE_DOMAIN,
             CONFLUENCE_BASE_URL: `http://${CONFLUENCE_DOMAIN}/wiki/rest/api/content`,
             CONFLUENCE_CATALOG_PAGE_ID: CONFLUENCE_CATALOG_PAGE_ID,
@@ -181,8 +185,7 @@ class Index {
         const slackManager = new SlackManager(this.localEnv);
 
         await slackManager.slackReportStart();
-
-        const cacheManager = CacheManager.getInstance(`cache.${this.localEnv.ENV_NAME}.json`, this.localEnv);
+        const cacheManager = CacheManager.getInstance(this.localEnv.PATH_TO_CACHE_FILE, this.localEnv);
         const statisticsManager = new StatisticsManager(this.localEnv);
 
         await statisticsManager.updateStatisticsFile();

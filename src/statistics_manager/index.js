@@ -1,6 +1,7 @@
 const Logger = require('../logger');
 const logger = Logger.getInstance();
 const fs = require('fs').promises;
+const {dirname} = require("path");
 const QaseManager = require('../qase_manager');
 
 
@@ -54,8 +55,7 @@ class StatisticsManager {
      */
     async updateStatisticsFile() {
         try {
-            const filePath = `statistics.${this.localEnv.ENV_NAME}.json`;
-
+            const filePath = this.localEnv.PATH_TO_STATISTICS_FILE;
             // Check if the file exists
             try {
                 await fs.access(filePath);
@@ -92,8 +92,22 @@ class StatisticsManager {
             // Rewrite the file if there were changes
             if (isUpdated) {
                 const updatedContent = JSON.stringify(statisticsFromFile, null, 2);
-                await fs.writeFile(filePath, updatedContent, 'utf8');
-                logger.info('The statistics file structure has been successfully updated.');
+                try {
+                    // Extracting the directory path from the full file path
+                    const dirPath = dirname(filePath);
+
+                    // Ensuring that the directory exists
+                    await fs.mkdir(dirPath, { recursive: true });
+
+                    await fs.writeFile(filePath, updatedContent, 'utf8');
+                    logger.info('The statistics file structure has been successfully updated.');
+                } catch (error) {
+                    logger.error(`An error occurred while updating the statistics file structure: ${error.message}`);
+                }
+
+
+
+
             } else {
                 logger.info('Updating the statistics file structure is not required.');
             }
@@ -263,7 +277,7 @@ class StatisticsManager {
      * @returns {Promise<void>}
      */
     async addOrUpdateStatistic() {
-        const filePath = `statistics.${this.localEnv.ENV_NAME}.json`;
+        const filePath = this.localEnv.PATH_TO_STATISTICS_FILE;
         const newData = this.localEnv.statistic.new;
         try {
             const currentDate = new Date().toISOString().split('T')[0];
@@ -314,7 +328,19 @@ class StatisticsManager {
                 logger.info(`New entry for today added to statistics.${this.localEnv.ENV_NAME}.json`);
             }
 
-            await fs.writeFile(filePath, JSON.stringify(fileContent, null, 2), 'utf8');
+            try {
+                // Extracting the directory path from the full file path
+                const dirPath = dirname(filePath);
+
+                // Ensuring that the directory exists
+                await fs.mkdir(dirPath, { recursive: true });
+
+
+                await fs.writeFile(filePath, JSON.stringify(fileContent, null, 2), 'utf8');
+            } catch (error) {
+                throw new Error(`Error while writing to the statistics.${this.localEnv.ENV_NAME}.json file:\n\n ${error}`);
+            }
+
         } catch (error) {
             logger.error(`Error #1011 while working with the statistics.${this.localEnv.ENV_NAME}.json file:\n\n ${error}`);
         }

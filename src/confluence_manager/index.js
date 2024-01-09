@@ -3,6 +3,7 @@ const logger = Logger.getInstance();
 const HtmlBuilder = require('../html_builder');
 const {JSDOM} = require("jsdom");
 const axios = require('axios');
+const {dirname} = require("path");
 const fs = require("fs").promises;
 class ConfluenceManager {
     constructor(localEnv) {
@@ -13,10 +14,21 @@ class ConfluenceManager {
     async getConfluencePages() {
         const pageTree = await this.fetchPageContent(this.localEnv.CONFLUENCE_CATALOG_PAGE_ID);
         if (pageTree) {
-            // Saving the retrieved data in a JSON file - cache.json
-            await fs.writeFile(`cache.${this.localEnv.ENV_NAME}.json`, JSON.stringify(pageTree, null, 2));
-            logger.info(`Data for all pages saved in cache.${this.localEnv.ENV_NAME}.json`);
-            return pageTree;
+            try {
+                // Extracting the directory path from the full file path
+                const dirPath = dirname(this.localEnv.PATH_TO_CACHE_FILE);
+
+                // Ensuring that the directory exists
+                await fs.mkdir(dirPath, { recursive: true });
+
+                // Saving the retrieved data in a JSON file
+                await fs.writeFile(this.localEnv.PATH_TO_CACHE_FILE, JSON.stringify(pageTree, null, 2));
+                logger.info(`Data for all pages saved in cache.${this.localEnv.ENV_NAME}.json`);
+                return pageTree;
+            } catch (error) {
+                logger.error(`Error writing cache file: ${error}`);
+                process.exit(1);
+            }
         } else {
             logger.error('Failed to retrieve page data.');
             process.exit(1);

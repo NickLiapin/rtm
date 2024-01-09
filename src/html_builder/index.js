@@ -116,7 +116,7 @@ class HtmlBuilder {
             // Return an array with two statistics objects
             return [last30DaysData, last12MonthsData];
         } catch (error) {
-            logger.error(`Error #1006 reading file "${filePath}":\n\n${error}`);
+            logger.error(`Error #1006 reading file "${filePath}":\n${error}`);
             return [];
         }
     }
@@ -215,7 +215,7 @@ class HtmlBuilder {
      * @returns {Promise<string>}
      */
     async htmlStatisticBuilder() {
-        const timeLine = await this.getStatistics(this.localEnv.PATH_TO_STATISTICS);
+        const timeLine = await this.getStatistics(this.localEnv.PATH_TO_STATISTICS_FILE);
         const timeLineDays = timeLine[0].slice().reverse(); // copy and reverse of the array - we need the old data at the beginning
         const timeLineMonth = timeLine[1].slice().reverse(); // copy and reverse of the array - we need the old data at the beginning
 

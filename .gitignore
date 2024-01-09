@@ -8,3 +8,5 @@
 /.idea/
 /cache.*.json
 /statistics.*.json
+/src/cache/
+/src/statistics/
