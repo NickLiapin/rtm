@@ -337,8 +337,8 @@ class StatisticsManager {
 
 
                 await fs.writeFile(filePath, JSON.stringify(fileContent, null, 2), 'utf8');
-            } catch (error) {
-                throw new Error(`Error while writing to the statistics.${this.localEnv.ENV_NAME}.json file:\n\n ${error}`);
+            } catch  {
+
             }
 
         } catch (error) {
