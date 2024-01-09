@@ -1,0 +1,10 @@
+/src/draft/
+/.env.*
+/src/cache.*.json
+/src/statistics.*.json
+/src/logs/
+/package-lock.json
+/node_modules/
+/.idea/
+/cache.*.json
+/statistics.*.json

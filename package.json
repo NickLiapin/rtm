@@ -1,0 +1,22 @@
+{
+  "name": "rtm",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start:sandbox": "node -r dotenv/config src/index.js dotenv_config_path=.env.sandbox",
+    "start:platform": "node -r dotenv/config src/index.js dotenv_config_path=.env.platform"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "delay": "^6.0.0",
+    "diff": "^5.1.0",
+    "dotenv": "^16.3.1",
+    "jsdoc": "^4.0.2",
+    "jsdom": "^23.0.1",
+    "nodemailer": "^6.9.7",
+    "winston": "^3.11.0"
+  }
+}
