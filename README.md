@@ -11,18 +11,28 @@ Your `.env` file should include the following parameters:
 
 ```
 # Basic program settings
-
 ENV_NAME=sandbox
+PATH_TO_LOGS_DIRECTORY=../logs
+PATH_TO_CACHE_DIRECTORY=../chache
+PATH_TO_STATISTICS_DIRECTORY=../statistics
 CONFLUENCE_DOMAIN=keplerhealth.atlassian.net
 CONFLUENCE_CATALOG_PAGE_ID=11111111
 CONFLUENCE_RTM_PAGE_ID=22222222
-CONFLUENCE_STATISTIC_PAGE_ID=33333333
+CONFLUENCE_STATISTIC_PAGE_ID=3333333
 CONFLUENCE_USERNAME=nikolay.lyapin@kepler.team
-CONFLUENCE_TOKEN=QWERT12........................................3QWERTY123
-CONFLUENCE_REG_EXP_AC=<strong[^>]*>(AC-[\d\.]+)\s?:?\s*<\/strong>(.*?)<\/p>|gi
+CONFLUENCE_TOKEN=ATATT................................................35BE
+REG_EXP_AC=<strong[^>]*>(AC-[\d\.]+)\s?:?\s*<\/strong>(.*?)<\/p>|gi
+REG_EXP_CASES=\[((?!NA).+?)\]|gi
+
+# [A_] or [N_]
+REG_EXP_AUTOMATION_STATUS=\[NA\]
+
+# true = "Need automate" / false = "Not automate"
+SELECT_AUTOMATION_STATUS=true
+
+SHOW_NEED_AUTOMATE_AC=true
 CONFLUENCE_ABBR=KP
 QASE_ABBR=TKP
-
 CONFLUENCE_UPDATE_RTM=true
 CONFLUENCE_UPDATE_STAT=true
 
@@ -30,26 +40,29 @@ CONFLUENCE_UPDATE_STAT=true
 ENABLE_JIRA_TASK=false
 JIRA_DOMAIN=keplerhealth.atlassian.net
 JIRA_USERNAME=nikolay.lyapin@kepler.team
-JIRA_TOKEN=QWERT12........................................3QWERTY123
+JIRA_TOKEN=ATATT........................................................35BE
+JIRA_PROJECT_KEY=KP
+JIRA_COMPONENT_NAME=RTM
 
 # E-mail configuration
 ENABLE_EMAIL_REPORT=false
 EMAIL_SERVICE=gmail
-EMAIL_USER=keplerQA@gmail.com
-EMAIL_PASSWORD=xxxxxxxxxxxxxxxxx
-EMAIL_TO=user_1@gmail.com,user_2@gmail.com,user_3@gmail.com,user_4@gmail.com
-EMAIL_SUBJECT="RTM updates"
-
-# qase.io configuration
-ENABLE_QASE=false
-QASE_TOKEN=QWERTY........123QWErty
-QASE_CODE=TKP
-QASE_SECRET=QWERTY........12312312323434546
+EMAIL_USER=john.smith.wuw@gmail.com
+EMAIL_PASSWORD="y...............................n"
+EMAIL_TO=nikolay.lyapin@kepler.team
+EMAIL_SUBJECT="Automatic RTM report"
+EMAIL_IMG=https://lh3.googleusercontent.com/pw/ADCreHcA7qI3BCwDy8P7rmAj1v59lBPym0NjrMY7T2WVYk8dOmb_GTozVf_GaLlPE8Fw3i3Tj15LYKrm4KXclKe4yy-2NTWeLxICx_28EpLseUV_8vAQDdoaqjedfCYmFvvokHGZ2M7H2fOMqZBsRBClTgLD4I5Ls1AQ7fhQ3QctqhXtx3zjayooZ6waAG7i4vFBew-F0_r94DiZ_b-0wsVsZ8tS3xS8wB5Pla21whbpUo2wTU6nlmyxxWJVNbUPj0VlkgR8LK5K9Iz4Hf0sB4gG8nmI3S0nH81TW46Z7a1PS6A9Bgx613OAPCVYSTS1eXpFibpbVIPAVvF3EAC1XzV6gB-1AXuvjhqb4AFX9qrnoJ1iWz4jQQn5lvd9tVs6UFvoXRV-k60-p2StEeMx0sBj6PVulmtP88mjNfqrNzQTuff6LOzoBYAIHZzv9LPUDeAGsq6OEnwbqYj1tDNDNhN6OkEOyDv_Omyjuk0lqpWuHQ-d8dMvr64Zwi2qJjdRC_dk_zvGTiv3CkMi963SO6jy7tK8AJ70niKgohna3hnZQ5sXNV-hh2xdT9r4DRKIpzzpJtvpIX2k719QtdCqO3vsXF0i6-GKqoysp16wgtLAp3_eGs2k7WcHLB-dlYW9Ku7wErBLutSWNLHq0CT2hT8GMU-qBGZeDRwmLULj1xrHepbw2jzRJudKi8oIdbwN7djzD8h5-8wCSkouLO3o9vwqm5Mc8Jxi8Hqoj3AipJpxj4Rs0L4HNfyQUh4soQHsZNL5u2J0GR3_0_1y7Tqipt3-OHIDKOL8Y_ZGNR5ibkOpKrX9iktT8zy62A19EU-MA0eas9KvbsPIDAkv42rIv9HAy4_goBPDm3lIMuPivO36ElMjGtmAX67BQzikMoVaCVNKPrHD2suQrvDBy2ARz4CBlrAbviUkjXMQb66ngPw8F8EnytSFBaXwDvN9LKF_il-wxEVnjRnMEbzvaMzNK0n68iLhrs1RPg_Kn43ltILHi21hOcD6=w150-h150-s-no-gm?authuser=3
 
 # Slack configuration
 ENABLE_SLACK_REPORT=true
-SLACK_BOT_TOKEN=qrwetwe.............qwe32
-SLACK_CHANNEL_ID=XXX....XXXX
+SLACK_BOT_TOKEN=xo....................................RP
+SLACK_CHANNEL_ID=C............0
+
+# qase.io configuration
+ENABLE_QASE=true
+QASE_TOKEN=8..................................b5
+QASE_CODE=WUW
+QASE_MAX_REQUESTS_PER_MINUTE=500
 ```
 
 ### Basic Program Settings
