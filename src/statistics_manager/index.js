@@ -16,20 +16,12 @@ class StatisticsManager {
     async setOldStatistic() { // set statistics from the last launch if there is a statistics, otherwise everything will remain at zero
         const obj = await this.loadStatistic(this.localEnv.PATH_TO_STATISTICS_FILE);
         if (obj) {
-
             const currentDate = new Date().setHours(0, 0, 0, 0);
             const lastDate = new Date(obj.statistics[obj.statistics.length - 1].date).setHours(0, 0, 0, 0);
             const test = currentDate === lastDate
             const numberOfData = test ? 2 : 1;
 
             this.localEnv.statistic.old = {...obj.statistics[obj.statistics.length - numberOfData].data};
-
-
-            // const inputDate = new Date("2023-12-22").setHours(0, 0, 0, 0);
-            // const currentDate = new Date().setHours(0, 0, 0, 0);
-            //
-            // const isEqual = inputDate === currentDate;
-            // console.log(isEqual);
         }
     }
 

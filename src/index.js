@@ -213,7 +213,6 @@ class Index {
 
         // await slackReportStop(); // create Slack report
         await slackManager.slackReportStop();
-
     }
 }
 

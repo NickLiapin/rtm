@@ -13,8 +13,8 @@ Your `.env` file should include the following parameters:
 # Basic program settings
 ENV_NAME=sandbox
 PATH_TO_LOGS_DIRECTORY=../logs
-PATH_TO_CACHE_DIRECTORY=../chache
-PATH_TO_STATISTICS_DIRECTORY=../statistics
+PATH_TO_CACHE_DIRECTORY=./chache
+PATH_TO_STATISTICS_DIRECTORY=./statistics
 CONFLUENCE_DOMAIN=keplerhealth.atlassian.net
 CONFLUENCE_CATALOG_PAGE_ID=11111111
 CONFLUENCE_RTM_PAGE_ID=22222222
