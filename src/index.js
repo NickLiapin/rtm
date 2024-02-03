@@ -16,8 +16,8 @@ class Index {
         //----- main configuration -----
         ENV_NAME = process.env.ENV_NAME ? process.env.ENV_NAME : "default",
         PATH_TO_LOGS_DIRECTORY = process.env.PATH_TO_LOGS_DIRECTORY ? process.env.PATH_TO_LOGS_DIRECTORY : '../logs',
-        PATH_TO_CACHE_DIRECTORY = process.env.PATH_TO_CACHE_DIRECTORY ? process.env.PATH_TO_CACHE_DIRECTORY : '../cache',
-        PATH_TO_STATISTICS_DIRECTORY = process.env.PATH_TO_STATISTICS_DIRECTORY ? process.env.PATH_TO_STATISTICS_DIRECTORY : '../statistics',
+        PATH_TO_CACHE_DIRECTORY = process.env.PATH_TO_CACHE_DIRECTORY ? process.env.PATH_TO_CACHE_DIRECTORY : './cache',
+        PATH_TO_STATISTICS_DIRECTORY = process.env.PATH_TO_STATISTICS_DIRECTORY ? process.env.PATH_TO_STATISTICS_DIRECTORY : './statistics',
         CONFLUENCE_DOMAIN = process.env.CONFLUENCE_DOMAIN,
         CONFLUENCE_CATALOG_PAGE_ID = process.env.CONFLUENCE_CATALOG_PAGE_ID,
         CONFLUENCE_RTM_PAGE_ID = process.env.CONFLUENCE_RTM_PAGE_ID,
@@ -33,6 +33,12 @@ class Index {
         SHOW_NEED_AUTOMATE_AC = process.env.SHOW_NEED_AUTOMATE_AC,
         ENABLE_UPDATE_RTM = process.env.CONFLUENCE_UPDATE_RTM,
         ENABLE_UPDATE_STAT = process.env.CONFLUENCE_UPDATE_STAT,
+        CONFLUENCE_UPDATE_BA= process.env.CONFLUENCE_UPDATE_BA,
+        CONFLUENCE_UPDATE_BA_ID= process.env.CONFLUENCE_UPDATE_BA_ID,
+        CONFLUENCE_UPDATE_BA_IMPLEMENTED= process.env.CONFLUENCE_UPDATE_BA_IMPLEMENTED,
+        CONFLUENCE_UPDATE_BA_APPROVED= process.env.CONFLUENCE_UPDATE_BA_APPROVED,
+        CONFLUENCE_UPDATE_APPROVAL_BOARD= process.env.CONFLUENCE_UPDATE_APPROVAL_BOARD,
+        CONFLUENCE_UPDATE_APPROVAL_BOARD_ID= process.env.CONFLUENCE_UPDATE_APPROVAL_BOARD_ID,
 
         //------ qase.io configuration -----
         ENABLE_QASE = process.env.ENABLE_QASE,
